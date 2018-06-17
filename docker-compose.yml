@@ -1,0 +1,17 @@
+version: "2"
+networks:
+  static-network:
+    ipam:
+      config:
+        - subnet: 172.25.0.0/24
+          ip_range: 172.25.0.0/24
+
+services:
+  sigs-frontend:
+    build: sigs-frontend
+    environment:
+      ENV: DEV
+    ports:
+      - "4200:4200"
+    networks:
+      static-network:

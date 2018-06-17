@@ -1,0 +1,6 @@
+{
+  "app": "sigs",
+  "backends": [],
+  "frontend": "angular",
+  "IP": "172.25"
+}

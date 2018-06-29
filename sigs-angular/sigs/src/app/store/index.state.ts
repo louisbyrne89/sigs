@@ -6,7 +6,7 @@ import { IResourcesStateRecord, ResourcesStateFactory } from '@app/store/resourc
 import { IViewsStateRecord, ViewsStateFactory } from '@app/store/views.state';
 
 export interface IAppState {
-  config: IConfigRecord;
+  // config: IConfigRecord;
   properties: IPropertiesRecord;
   propertiesKey: string;
   router: string;
@@ -15,7 +15,7 @@ export interface IAppState {
 }
 
 const INITIAL_APP_STATE: IAppState = {
-  config: ConfigFactory(),
+  // config: ConfigFactory(),
   properties: PropertiesFactory(),
   propertiesKey: '',
   router: '',

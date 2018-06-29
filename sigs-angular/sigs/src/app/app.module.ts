@@ -9,7 +9,9 @@ import { StoreModule } from '@app/store/store.module';
 import { SigsMainAppModule } from '@app/sigs-main-app/sigs-main-app.module';
 import { BlogModule } from '@app/blog/blog.module';
 import { CoreModule } from '@app/core/core.module';
-import { SharedModule } from '@app/shared/shared.module'
+import { SharedModule } from '@app/shared/shared.module';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 @NgModule({
   declarations: [
@@ -25,9 +27,10 @@ import { SharedModule } from '@app/shared/shared.module'
     BlogModule,
     CoreModule,
     SharedModule,
-
+    MDBBootstrapModule.forRoot(),
+    Ng2GoogleChartsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,7 +1,6 @@
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
 import { IToolbarStateRecord, ToolbarStateFactory } from '@app/core/toolbar/toolbar.state';
 
-
 export interface ICoreState {
   toolbar: IToolbarStateRecord;
 }

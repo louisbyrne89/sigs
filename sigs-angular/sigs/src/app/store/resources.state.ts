@@ -1,5 +1,5 @@
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
-import { IGoogleMapsResourcesStateRecord, GoogleMapsResourcesStateFactory } from '@app/store/google-maps.state';
+import { IGoogleMapsResourcesStateRecord, GoogleMapsResourcesStateFactory } from '@app/store/resources/google-maps/google-maps.state';
 
 
 export interface IResourcesState {

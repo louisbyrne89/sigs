@@ -1,3 +1,13 @@
-<p>
-  imap works!
-</p>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div #gmap style="width:100%; height: 400px"></div>
+<div class="row" *ngIf="mapCreated">
+    <div class="col-md-4">
+        <button class="btn btn-deep-orange" [ngClass]="{'disabled': !roofCreated}" (click)="rotate('right')" mdbWavesEffect>Rotate<br>Right</button>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-deep-orange" (click)="addRoof()" mdbWavesEffect>Add<br>roof</button>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-deep-orange" [ngClass]="{'disabled': !roofCreated}" (click)="rotate('left')" mdbWavesEffect>Rotate<br>Left</button>
+    </div>
+</div>

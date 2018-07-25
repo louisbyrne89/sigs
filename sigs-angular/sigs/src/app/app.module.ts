@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgReduxModule } from '@angular-redux/store';
 import { NgReduxRouterModule } from '@angular-redux/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { EnvironmentService } from '@environments/environment.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     StoreModule,
     NgReduxModule,
@@ -30,7 +33,9 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     MDBBootstrapModule.forRoot(),
     Ng2GoogleChartsModule,
   ],
-  providers: [],
+  providers: [
+    EnvironmentService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

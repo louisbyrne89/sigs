@@ -8,6 +8,7 @@ import { propertiesReducer } from './properties/properties.reducers';
 import { ResourcesReducers } from '@app/store/resources.reducers';
 import { ViewsReducers } from '@app/store/views.reducers';
 import { CommonReducer } from '@app/store/common/common.reducers';
+import { CommonApiResourceReducer } from '@app/store/common/common-api.reducers';
 
 
 export function reduceReducers(...reducers: any[]) {
@@ -27,5 +28,6 @@ export const rootReducer = reduceReducers(
     resources: ResourcesReducers,
     views: ViewsReducers,
   }),
-  CommonReducer
+  CommonReducer,
+  CommonApiResourceReducer,
 );

@@ -1,17 +1,45 @@
-version: "2"
+version: "2.0"
 networks:
   static-network:
     ipam:
       config:
         - subnet: 172.25.0.0/24
           ip_range: 172.25.0.0/24
-
 services:
-  sigs-frontend:
-    build: sigs-frontend
+  sigs-angular:
+    links:
+      - sigs-django
+    build: sigs-angular
     environment:
       ENV: DEV
     ports:
       - "4200:4200"
+    volumes:
+      - ./sigs-angular/sigs:/home/app/sigs
+      - /home/app/sigs/node_modules
     networks:
       static-network:
+        ipv4_address: 172.25.0.20
+  sigs-mysql:
+    build: sigs-django/sigs-mysql
+    environment:
+      ENV: DEV
+    networks:
+      static-network:
+        ipv4_address: 172.25.0.31
+  sigs-django:
+    links:
+      - sigs-mysql
+    build: sigs-django
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      ENV: DEV
+    volumes:
+      - ./sigs-django/code/:/code/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - sigs-mysql
+    networks:
+      static-network:
+        ipv4_address: 172.25.0.21

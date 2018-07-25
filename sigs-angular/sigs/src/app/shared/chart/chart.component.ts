@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-chart',
@@ -6,10 +7,67 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
+  public chartType:string = 'line';
+
+  public chartDatasets:Array<any> = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'My First dataset'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'My Second dataset'}
+  ];
+
+public chartLabels:Array<any> = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+
+public chartColors:Array<any> = [
+    {
+        backgroundColor: 'rgba(220,220,220,0.2)',
+        borderColor: 'rgba(220,220,220,1)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(220,220,220,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(220,220,220,1)'
+    },
+    {
+        backgroundColor: 'rgba(151,187,205,0.2)',
+        borderColor: 'rgba(151,187,205,1)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(151,187,205,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(151,187,205,1)'
+    }
+];
+
+public chartOptions:any = {
+    responsive: true
+};
+public chartClicked(e: any): void { }
+public chartHovered(e: any): void { }
 
   constructor() { }
 
   ngOnInit() {
-  }
+//     var ctxL = document.getElementById("lineChart").getContext('2d');
+//     var myLineChart = new Chart(ctxL, {
+//         type: 'line',
+//         data: {
+//             labels: ["February", "March", "April", "May", "June", "July"],
+//             datasets: [
+//                 {
+//                     label: "Daily Global Irradiance",
+//                     fillColor: "rgba(220,220,220,0.2)",
+//                     strokeColor: "rgba(220,220,220,1)",
+//                     pointColor: "rgba(220,220,220,1)",
+//                     pointStrokeColor: "#fff",
+//                     pointHighlightFill: "#fff",
+//                     pointHighlightStroke: "rgba(220,220,220,1)",
+//                     data: [65, 59, 80, 81, 56, 55, 40]
+//                 },
+//             ]
+//         },
+//         options: {
+//             responsive: true
+//         }
+//     });
+//   }
 
 }

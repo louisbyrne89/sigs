@@ -2,27 +2,35 @@
   <div class="row">
     <div class="col">
       <app-map-form></app-map-form>
+      <br>
+      <div class="card deep-orange lighten-1 text-center z-depth-2">
+        <div class="card-body">
+          <p class="white-text mb-0">1. Please enter the first line of your address and your postcode.</p>
+        </div>
+      </div>
+      <br>
+      <div class="card default-color lighten-1 text-center z-depth-2" *ngIf="(stageObs | async) > 0">
+        <div class="card-body">
+          <p class="white-text mb-0">2. Drag the map so that it is centred on your house and click the add roof button to add a roof.</p>
+        </div>
+      </div>
+      <br>
+      <div *ngIf="(stageObs | async) > 1">
+        <div class="card info-color  lighten-1 text-center z-depth-2">
+          <div class="card-body">
+            <p class="white-text mb-0">3. Drag the roof so that it is over one of your rooves, rotate the roof so that it is perpendicular to your roof.
+              Then add more rooves and repeat the process until you have added all of the rooves you are considering adding solar panels on.
+            </p>
+          </div>
+        </div>
+        <br>
+        <button class="btn btn-deep-orange" (click)="submit()">Submit</button>
+      </div>
+      <br>
     </div>
     <div class="col">
        <app-imap></app-imap>
-    </div>
-  </div>
-  <div>
-    <app-map-roof-list></app-map-roof-list>
-  </div>
-  <div class="card deep-orange lighten-1 text-center z-depth-2">
-    <div class="card-body">
-      <p class="white-text mb-0">1. Please enter the first line of your address and your postcode.</p>
-    </div>
-  </div>
-  <div class="card deep-orange lighten-1 text-center z-depth-2" *ngIf="">
-    <div class="card-body">
-      <p class="white-text mb-0">1. Please enter the first line of your address and your postcode.</p>
-    </div>
-  </div>
-  <div class="card deep-orange lighten-1 text-center z-depth-2" *ngIf="">
-    <div class="card-body">
-      <p class="white-text mb-0">1. Please enter the first line of your address and your postcode.</p>
+       <app-map-roof-list></app-map-roof-list>
     </div>
   </div>
 </div>

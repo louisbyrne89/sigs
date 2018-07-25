@@ -30,8 +30,8 @@ export class ImapActions extends CommonActions {
       const lon =  results[0].geometry.location.lng();
       if (status === google.maps.GeocoderStatus.OK) {
         positions.next(PositionsStateFactory({
-          "latitude": lat,
-          "longitude": lon
+          "latitude": parseFloat(lat.toFixed(1)),
+          "longitude": parseFloat(lon.toFixed(1))
         }))
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
@@ -44,6 +44,14 @@ export class ImapActions extends CommonActions {
           path: this.path,
           prop: 'positions',
           value: positions
+        }
+      });
+      this.store.dispatch({
+        type: CommonActions.UPDATE_PROPERTY,
+        payload: {
+          path: this.path,
+          prop: 'stage',
+          value: 1
         }
       });
     })
@@ -68,6 +76,14 @@ export class ImapActions extends CommonActions {
         path: this.path,
         prop: 'selectedRoof',
         value: roovesLength
+      }
+    });
+    this.store.dispatch({
+      type: CommonActions.UPDATE_PROPERTY,
+      payload: {
+        path: this.path,
+        prop: 'stage',
+        value: 2
       }
     });
     

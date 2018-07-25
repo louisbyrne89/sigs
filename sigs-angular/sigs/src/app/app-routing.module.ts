@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from '@app/blog/dashboard/dashboard.component';
 import { ArticleComponent } from '@app/blog/article/article.component';
 import { SigsMainComponent } from '@app/sigs-main-app/sigs-main/sigs-main.component';
+import { AnalysisComponent } from '@app/sigs-main-app/analysis/analysis.component';
+
 
 const routes: Routes = [
   {
@@ -17,6 +19,10 @@ const routes: Routes = [
   {
     path: 'main',
     component: SigsMainComponent,
+  },
+  {
+    path: 'analysis',
+    component: AnalysisComponent,
   },
 ];
 

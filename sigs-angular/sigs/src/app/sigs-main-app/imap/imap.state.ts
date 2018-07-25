@@ -35,13 +35,15 @@ interface IImapState {
     positions: IPositionsStateRecord;
     rooves: Immutable.Map<number, number>;
     selectedRoof: number;
+    stage: number;
 }
 
 const Imap: IImapState = {
     address: AddressStateFactory(),
     positions: PositionsStateFactory(),
     rooves: Immutable.Map(),
-    selectedRoof: null
+    selectedRoof: null,
+    stage: 0
 };
 
 export const ImapStateFactory = makeTypedFactory<IImapState, IImapStateRecord>(Imap);

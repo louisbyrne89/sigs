@@ -1,7 +1,7 @@
 version: "2"
 services:
-  sigs-frontend:
-    build: sigs-frontend
+  sigs-angular:
+    build: sigs-angular
     environment:
       ENV: DEV
     ports:

@@ -1,6 +1,9 @@
 {
   "app": "sigs",
-  "backends": [],
+  "backends": [
+    "django"
+  ],
   "frontend": "angular",
+  "database": "mysql",
   "IP": "172.25"
 }

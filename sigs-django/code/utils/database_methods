@@ -1,0 +1,82 @@
+#!/usr/bin/env python3
+
+"""
+This script allow to reset the database(s) of the various service.
+It is just a nice wrapping of the Database class methods.
+"""
+import argparse
+import logging
+import os
+import sys
+
+from database_utils import Database
+
+
+if __name__ == "__main__":
+    # Declare arguments
+    parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
+                                     description="Reset databases")
+    parser.add_argument(
+        dest="services",
+        default="sigs",
+        nargs="*",
+        help="Services for which you want to reset the database. By default it resets all three of them.",
+    )
+    parser.add_argument(
+        "--method", "-m",
+        dest="method",
+        default="dump",
+        help="Services for which you want to generate the database dumps.",
+    )
+    parser.add_argument(
+        "--verbosity", "-v",
+        action="store_true",
+        dest="verbosity_debug",
+        default=False,
+        help="Increase the level of verbosity",
+    )
+    parser.add_argument(
+        "--build", "-b",
+        dest="build_name",
+        default="sigs",
+        help="Name of the build (used on Jenkins to name the containers)",
+    )
+    parser.add_argument(
+        "--copy", "-c",
+        action="store_true",
+        dest="copy_dumps",
+        default=False,
+        help=("Copy of the local dump files to the container before it does the reset. Note that it only works if you"
+              " are resetting a specific service and to do that you need to be in the service folder."),
+    )
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Deal with the copy dump special requirements
+    if args.copy_dumps:
+        if len(args.services) > 1:
+            sys.exit("[ERROR] The dump files copy can only be done on one service at a time so please "
+                     "provide a single service name")
+        # Check we are in the right directory
+        service = args.services[0].lower()
+
+        if os.path.basename(os.getcwd()) != service:
+            sys.exit("[ERROR] You need to execute this command in '{}' directory".format(service))
+    for service in args.services:
+        # Initialise db object
+        db = Database(service=service, build=args.build_name)
+
+        # Set the logger level
+        if args.verbosity_debug:
+            db.logger.setLevel(logging.DEBUG)
+
+        # Copy the files on the container if needed
+        if args.copy_dumps:
+            db.update_container()
+        # Trigger reset with the development database dumps
+        if args.method == "reset":
+            db.reset()
+        elif args.method == "dump":
+            db.generate_database_dumps()
+

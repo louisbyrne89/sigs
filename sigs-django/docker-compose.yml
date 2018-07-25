@@ -1,0 +1,18 @@
+version: "2.0"
+services:
+  sigs-django:
+    links:
+      - sigs-mysql
+    build: .
+    command: python sigs/manage.py runserver 0.0.0.0:8000
+    environment:
+      ENV: DEV
+    volumes:
+      - ./sigs-django/code/:/code/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - sigs-mysql
+    networks:
+      static-network:
+        ipv4_address: 172.25.0.21
